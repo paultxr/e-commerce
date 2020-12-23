@@ -1,3 +1,15 @@
 body {
-    background-color: lightgrey;
+    background-color:whitesmoke;
+}
+
+.product-container {
+    border: red 2px solid;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.filter-container {
+    border: red 2px solid;
+    padding-top: 20%;
+    padding-bottom: 20%;
 }

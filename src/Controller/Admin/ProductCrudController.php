@@ -27,6 +27,7 @@ class ProductCrudController extends AbstractCrudController
             AssociationField::new('artist'),
             TextEditorField::new('description'),
             IntegerField::new('year'),
+            IntegerField::new('price'),
             AssociationField::new('type'),
             AssociationField::new('genre'),
             CollectionField::new('pictures')

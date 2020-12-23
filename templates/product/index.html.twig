@@ -1,9 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Blog{% endblock %}
+{% block title %}Products{% endblock %}
 
 {% block body %}
 
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3 filter-container">
+		</div>
+		<div class="col-md-9 product-container">
+			<div class="row">
+		
+          {% for product in products %}
+          <div class="card col-md-3 product-card">
+            <img class="card-img-top" src="{{product.pictures[0].url}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.title }}</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+          {% endfor %}
 
+			</div>
+		</div>
+	</div>
+</div>
 
 {% endblock %}
