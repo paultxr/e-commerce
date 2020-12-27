@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Frequently asked questions{% endblock %}
+
+{% block body %}
+<div class="container mt-5 mb-5 pb-5">
+    <h1 class="Faq_title mb-5">Frequently asked questions</h1>
+    {% for faq in faq %}
+    <div class="accordion" id="accordionExample">
+        <div class="card-header color_header case-color" id="heading{{faq.id}}">
+            <div class="mb-0">
+                <div class="row mt-4">
+                    <div class="col-10 color_question">
+                        <p>{{faq.question}}</p>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn text-left collapsed icon-faq" type="button" data-toggle="collapse" data-target="#collapse{{faq.id}}" aria-expanded="false" aria-controls="collapse{{faq.id}}">
+                            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPGc+DQoJCTxwYXRoIGQ9Ik00OTIsMjM2SDI3NlYyMGMwLTExLjA0Ni04Ljk1NC0yMC0yMC0yMGMtMTEuMDQ2LDAtMjAsOC45NTQtMjAsMjB2MjE2SDIwYy0xMS4wNDYsMC0yMCw4Ljk1NC0yMCwyMHM4Ljk1NCwyMCwyMCwyMGgyMTYNCgkJCXYyMTZjMCwxMS4wNDYsOC45NTQsMjAsMjAsMjBzMjAtOC45NTQsMjAtMjBWMjc2aDIxNmMxMS4wNDYsMCwyMC04Ljk1NCwyMC0yMEM1MTIsMjQ0Ljk1NCw1MDMuMDQ2LDIzNiw0OTIsMjM2eiIvPg0KCTwvZz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" height="32px" width="32px"/></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div id="collapse{{faq.id}}" class="collapse color_answer" aria-labelledby="heading{{faq.id}}" data-parent="#accordionExample">
+                <div class="card-body color_answer">
+                {{faq.answer}}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

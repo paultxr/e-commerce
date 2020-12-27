@@ -4,29 +4,24 @@
 
 {% block body %}
 
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-3 filter-container">
-		</div>
-		<div class="col-md-9 product-container">
-			<div class="row">
-		
-          {% for product in products %}
-          <div class="card col-md-3 product-card">
-            <img class="card-img-top" src="{{product.pictures[0].url}}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">{{ product.title }}</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-          </div>
-          {% endfor %}
-
-			</div>
-		</div>
-	</div>
+<div class="container">
+   
 </div>
 
+<div class="container-fluid">
+
+  <div class="row">
+      {% for product in products %}
+      <div class="card-body col-lg-3 product-card">
+          <div class="card">
+              <a href="{{ product.id }}"><img class="card-img-top" src="{{ product.pictures[0].url }}" alt="Card image cap"></a>
+              <div class="card-body">
+              <h5 class="card-title">{{ product.title }} - {{ product.artist }}</h5>
+              <p class="card-title product-price">{{ product.price }} $ <a href="{{ path('cart_add', { 'id' : product.id }) }}"><button type="button" class="btn btn-primary btn-lg">Add to cart</button></a></p>
+          </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
 {% endblock %}
