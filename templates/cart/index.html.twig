@@ -13,9 +13,10 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>Artist</th>
+                    <th>Picture</th>
                     <th>Title</th>
-                    <th>Price</th>
+                    <th>Unit price</th>
                     <th>Quantity</th>
                     <th>Total</th>
                 </tr>
@@ -23,7 +24,8 @@
             <tbody>
                 {% for item in items %}
                     <tr>
-                        <td>{{ item.product.id }}</td>
+                        <td>{{ item.product.artist}}</td>
+                        <td><img src="{{ item.product.pictures[0].url}}" height="100px" widht="100px"></td>
                         <td>{{ item.product.title }}</td>
                         <td>{{ item.product.price }}</td>
                         <td>{{ item.quantity }}</td>
@@ -46,8 +48,42 @@
                 </tr>
             </tfoot>
         </table>
+        <button type="submit" id="checkout-button">Checkout</button>
+
     {% else %}
         <p> It's empty !</p>
     {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+    // Create an instance of the Stripe object with your publishable API key
+    var stripe = Stripe("pk_live_51I2xgzDEHZhwUvxLmhiGaJdGbkH9kUjl81CdH4x51bRugXJbSDl8HXzuc9u3vN3fG9U3IBxWSf5S5kkpOE6jy3yh00gFs8CuoU");
+    var checkoutButton = document.getElementById("checkout-button");
+    checkoutButton.addEventListener("click", function () {
+      fetch("/create-checkout-session", {
+        method: "POST",
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (session) {
+          return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function (result) {
+          // If redirectToCheckout fails due to a browser or network
+          // error, you should display the localized error message to your
+          // customer using error.message.
+          if (result.error) {
+            alert(result.error.message);
+          }
+        })
+        .catch(function (error) {
+          console.error("Error:", error);
+        });
+    });
+  </script>
 
 {% endblock %}
